@@ -9,10 +9,14 @@ class Card
                       'A^' => [1, 11] }.freeze
   def take_value_of_cards(hand)
     item = []
-    hand.each do |card|
-      CARD_WITH_VALUE.each do |key, value|
-        item << value if card == key
+    if hand.instance_of?(Array)
+      hand.each do |card|
+        CARD_WITH_VALUE.each do |key, value|
+          item << value if card == key
+        end
       end
+    else
+      item << CARD_WITH_VALUE[hand]
     end
     item
   end
